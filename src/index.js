@@ -1,5 +1,5 @@
-const URL_API_FOX = "https://randomfox.ca/images"; // El maximo de imagenes es 122
-const URL_API_CAT = "https://api.thecatapi.com/v1/images";
+import { registerImage } from "./lazy";
+import { URL_API_CAT, URL_API_FOX } from "./apis";
 
 const app = document.querySelector("#app");
 const btnAddFox = document.querySelector("#add-fox");
@@ -7,9 +7,8 @@ const btnAddCat = document.querySelector("#add-cat");
 
 /**
  * Function to call a cat
- *
- * @param {Number} page
- * @return cat
+ * @param {Number} page La página donde quieres obtener el gato
+ * @return un gato
  */
 const callCat = async (page) => {
   try {
@@ -22,12 +21,23 @@ const callCat = async (page) => {
   }
 };
 
+/**
+ * Obtiene un numero aleatorio
+ * @param {Number} min el número minimo para el rango aleatorio
+ * @param {Number} max el número maximo para el rango aleatorio
+ * @returns un numero aleatorio
+ */
 const getRandomNumber = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+/**
+ * Crea una imagen y lo añade a un contenedor
+ * @param {Element} img imagen a colocar dentro del contenedor
+ * @returns Un contenedor con la imagen
+ */
 const createContainerImg = (img) => {
   const container = document.createElement("div");
   container.className = "container-image";
@@ -37,23 +47,25 @@ const createContainerImg = (img) => {
 
 /**
  * Método para añadir zorros
- * @param {*} event
+ * @param {Event} event
  */
 const addFox = (event) => {
   event.preventDefault();
 
-  const id = getRandomNumber(1,122)
+  const id = getRandomNumber(1, 122);
   const img = document.createElement("img");
-  img.src = `${URL_API_FOX}/${id}.jpg`;
+  img.dataset.src = `${URL_API_FOX}/${id}.jpg`;
   img.width = 150;
+  img.height = 150;
 
-  const container = createContainerImg(img);
-  app.querySelector("#add-fox").insertAdjacentElement("beforeBegin", container);
+  const newImage = createContainerImg(img);
+  app.querySelector(".foxes").appendChild(newImage);
+  setTimeout(() => registerImage(newImage), 1000);
 };
 
 /**
  * Método para añadir gatos
- * @param {*} event
+ * @param {Event} event
  */
 const addCat = async (event) => {
   event.preventDefault();
@@ -65,12 +77,13 @@ const addCat = async (event) => {
   }
 
   const img = document.createElement("img");
-  img.src = cat[0].url;
+  img.dataset.src = cat[0].url;
   img.width = cat[0].width;
   img.height = cat[0].height;
 
-  const container = createContainerImg(img);
-  app.querySelector("#add-cat").insertAdjacentElement("beforeBegin", container);
+  const newImage = createContainerImg(img);
+  app.querySelector(".cats").appendChild(newImage);
+  setTimeout(() => registerImage(newImage), 1000);
 };
 
 btnAddFox.addEventListener("click", addFox);
