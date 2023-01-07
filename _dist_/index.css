@@ -1,0 +1,83 @@
+@import "../_snowpack/pkg/tailwindcss/dist/base.css";
+@import "../_snowpack/pkg/tailwindcss/dist/components.css";
+@import "../_snowpack/pkg/tailwindcss/dist/utilities.css";
+
+body {
+  font-size: 18px;
+}
+
+div.py-10 {
+  padding-bottom: 6rem;
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 85%;
+  margin: 12px auto;
+}
+
+.cats,
+.foxes {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.container-btn {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 20px;
+  background: rgb(255, 255, 255);
+  box-shadow: -3px 0 5px #000;
+  position: fixed;
+  bottom: 0;
+}
+
+.container-image {
+  width: 100%;
+  max-width: 300px;
+  background: #c5c5c5;
+  border: 1px solid black;
+  border-radius: 6px;
+  box-shadow: 0px 2px 5px grey;
+}
+
+.container-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.btn {
+  padding: 6px 14px;
+  border: 1px solid #000;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+}
+
+#add-fox.btn {
+  color: #fff;
+  background: rgb(255, 69, 0);
+  background: linear-gradient(90deg, rgb(255, 69, 0), rgba(29, 10, 3, 0.726));
+  box-shadow: 0 1px 4px rgb(255, 69, 0);
+}
+
+#add-cat.btn {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgb(255, 255, 255),
+    rgba(141, 92, 74, 0.726)
+  );
+  box-shadow: 0 1px 4px rgb(255, 255, 255);
+}
+
+.btn:target,
+.btn:hover {
+  box-shadow: none;
+}
