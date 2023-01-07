@@ -1,7 +1,7 @@
 {
   "name": "cats-and-foxes",
   "author": "Luis Rodriguez - lrodriguez@darkusphantom.com",
-  "homepage": "",
+  "homepage": "https://darkusphantom.github.io/cats-and-foxes",
   "scripts": {
     "start": "snowpack dev",
     "build": "snowpack build",
